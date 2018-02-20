@@ -13,16 +13,16 @@
 .socket.colourW {
 	background-image: url("../images/socketWhite.png")
 }
-
-.socketRight {
-	float: right;
-}
-
 .socket {
 	width: 47px;
 	height: 47px;
 	float: left;
 }
+
+.socketRight {
+	float: right;
+}
+
 
 .sockets {
 	width: 94px;

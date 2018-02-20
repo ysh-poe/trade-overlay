@@ -67,7 +67,7 @@ tradeTabs.on('tab-active', (tab, tradeTabs) => {
 
 tradeTabs.on('tab-added', (tab, tradeTabs) => {
   tab.activate()
-  tab.webview.addEventListener('dom-ready', () => tab.webview.openDevTools())
+  // tab.webview.addEventListener('dom-ready', () => tab.webview.openDevTools())
 
   // Event if whisper button is clicked
   tab.webview.addEventListener('ipc-message', event => {
@@ -90,7 +90,7 @@ tradeTabs.on('tab-added', (tab, tradeTabs) => {
     }
   })
 
-    // Reset Badge and flash if active
+  // Reset Badge and flash if active
   tab.on('active', (tab) => {
     tab.setBadge(false)
     tab.flash(false)
@@ -104,7 +104,7 @@ tradeTabs.on('tab-added', (tab, tradeTabs) => {
     }
   })
 
-    // External link event
+  // External link event
   tab.webview.addEventListener('new-window', (e) => {
     const protocol = require('url').parse(e.url).protocol
     if (protocol === 'http:' || protocol === 'https:') {

@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         ipcRenderer.sendToHost('notify')
       }
 
-    // Hooking onto the jQuery Ajax function
+      // Hooking onto the jQuery Ajax function
       $(document).ajaxSuccess(function (a, b, c, reponse) {
         ipcRenderer.send('livesearch-item', 'poetrade', reponse)
       })

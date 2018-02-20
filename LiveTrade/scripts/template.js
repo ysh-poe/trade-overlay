@@ -1,5 +1,5 @@
-var jade = require('jade')
-var fn = jade.compileFile('./LiveTrade/templates/item-big.jade')
+var pug = require('pug')
+var fn = pug.compileFile('./LiveTrade/templates/item-big.pug')
 
 var template = {
   createItemTemplate: function (item) {
@@ -17,18 +17,18 @@ var template = {
     var div = document.createElement('div')
     div.className = 'sockets'
 
-    var socketCounter = 0
     var linkCounter = 0
-    sockets.forEach((socket) => {
+    var socketCounter = 0
+    sockets.forEach((socket, index) => {
       if (socket === '-' || socket === ' ') {
         if (socket === '-') {
           div.appendChild(addDiv('link link' + linkCounter))
         }
-        linkCounter++
+        linkCounter = linkCounter + 1
       } else {
-        socketCounter++
+        socketCounter = socketCounter + 1
         var socketDiv = addDiv('socket colour' + socket)
-        if (socketCounter % 2 === 0) socketDiv.classList.add('socketRight')
+        if (socketCounter === 3 || socketCounter === 2 || socketCounter === 6) socketDiv.classList.add('socketRight')
         div.appendChild(socketDiv)
       }
     })
