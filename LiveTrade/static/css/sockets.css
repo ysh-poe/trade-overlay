@@ -1,0 +1,74 @@
+.socket.colourR {
+	background-image: url("../images/socketRed.png")
+}
+
+.socket.colourB {
+	background-image: url("../images/socketBlue.png")
+}
+
+.socket.colourG {
+	background-image: url("../images/socketGreen.png")
+}
+
+.socket.colourW {
+	background-image: url("../images/socketWhite.png")
+}
+
+.socketRight {
+	float: right;
+}
+
+.socket {
+	width: 47px;
+	height: 47px;
+	float: left;
+}
+
+.sockets {
+	width: 94px;
+	position: absolute
+}
+
+.link {
+	position: absolute;
+}
+
+.link.link0,
+.link.link2,
+.link.link4 {
+	background-image: url("../images/linkHorizontal.png");
+	width: 37.72819px;
+	height: 15.21298px
+}
+
+.link.link1,
+.link.link3 {
+	background-image: url("../images/linkVertical.png");
+	width: 15.21298px;
+	height: 37.72819px
+}
+
+.link.link0 {
+	left: 28px;
+	top: 16px
+}
+
+.link.link1 {
+	left: 63px;
+	top: 28.60041px
+}
+
+.link.link2 {
+	left: 28px;
+	top: 63.59026px
+}
+
+.link.link3 {
+	left: 16.12576px;
+	top: 76.06491px
+}
+
+.link.link4 {
+	left: 28px;
+	top: 111.05477px
+}

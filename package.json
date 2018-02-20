@@ -1,0 +1,55 @@
+{
+  "name": "trade-overlay",
+  "productName": "Trade Overlay",
+  "version": "1.0.0",
+  "description": "An ingame trade overlay for Path of Exile",
+  "license": "MIT",
+  "repository": "ysh-poe/trade-overlay",
+  "author": {
+    "name": "ysh-poe",
+    "url": ""
+  },
+  "scripts": {
+    "test": "standard",
+    "start": "npm test && electron .",
+    "build": "electron-packager . --out=dist --asar --overwrite --platform win32",
+    "installer": "node scripts/build.js"
+  },
+  "dependencies": {
+    "clipboardy": "^1.2.2",
+    "electron-config": "^1.0.0",
+    "electron-debug": "^1.0.0",
+    "electron-tabs": "^0.9.0",
+    "electron-titlebar-windows": "^3.0.0",
+    "ffi": "^2.2.0",
+    "jade": "^1.11.0",
+    "jquery": "^3.2.1",
+    "jquery.js": "0.0.2-security",
+    "mustache": "^2.3.0",
+    "ref": "^1.3.5",
+    "robotjs": "^0.4.7",
+    "win32-api": "^1.11.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "devtron": "^1.1.0",
+    "electron": "^1.6.6",
+    "electron-packager": "^8.0.0",
+    "electron-rebuild": "^1.7.3",
+    "electron-winstaller": "^2.6.4",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "standard": "^10.0.3",
+    "xo": "^0.18.0"
+  },
+  "xo": {
+    "envs": [
+      "node",
+      "browser"
+    ]
+  }
+}

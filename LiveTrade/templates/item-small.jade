@@ -1,0 +1,21 @@
+.item
+  table
+    tr
+      td.icon
+        .sockets
+          !{createSocket(sockets)}
+        img(src="#{icon}", alt="#{title}")
+      td
+        table
+          tr
+            td #{title}
+          tr
+            td         
+              if seller.buyout.trim() != ''
+                | Price: #{seller.buyout} 
+              else
+                | Price: unpriced 
+              | IGN: #{seller.ign} 
+              a.whisper(href="#", data-message='@YoshiPride #{seller.ign} Hi, I would like to buy your #{title} listed for #{seller.buyout} in #{seller.league} (stash tab "#{seller.tab}"; position: left #{seller.x}, top #{seller.y})') 
+
+                

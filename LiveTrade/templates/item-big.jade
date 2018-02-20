@@ -1,0 +1,33 @@
+.item
+  table
+    tr
+      td.icon
+        .sockets
+          !{createSocket(sockets)}
+        img(src="#{icon}", alt="#{title}")
+      td.mods
+        table
+          tr
+            td #{title}
+          tr
+            td
+              ul
+                if mods.implicit.trim() != ''
+                  li.implicit #{mods.implicit}
+                each explicit in mods.explicits
+                  li.explixit #{explicit}
+                each craft in mods.crafted
+                  li.crafted #{craft}
+      td.properties
+        ul
+          each property,name in properties
+            if property.trim() != ''
+              li.property #{name}:#{property}
+    tr
+      td(colspan="3")
+        if seller.buyout.trim() != ''
+          | Price: #{seller.buyout} 
+        else
+          | Price: unpriced 
+        | IGN: #{seller.ign}
+        a.whisper(href="#", data-message='@YoshiPride #{seller.ign} Hi, I would like to buy your #{title} listed for #{seller.buyout} in #{seller.league} (stash tab "#{seller.tab}"; position: left #{seller.x}, top #{seller.y})') Whisper
