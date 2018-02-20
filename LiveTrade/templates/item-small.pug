@@ -2,9 +2,8 @@
   table
     tr
       td.icon
-        .sockets
-          !{createSocket(sockets)}
-        img(src="#{icon}", alt="#{title}")
+        .sockets!=createSocket(sockets)      
+        img(src=icon, alt=title)
       td
         table
           tr
