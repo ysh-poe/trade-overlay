@@ -3,20 +3,31 @@
 
 <head>
     <link rel="stylesheet" href="./static/css/sockets.css" type="text/css" />
+    <style>
+        a {
+            -webkit-app-region: no-drag;
+        }
+    </style>
+
 </head>
-<body><div class='navigation'>
-    <a href='#' class='close'>Close</a>
-     Queue:
-    <b id='amount'></b> 
-    <a href='#' onclick="return false;" class='next'>Next</a> 
-    <a href='#' onclick="return false;" class='whisper-btn'>Whisper</a>
-</div>
-<div class='content'>
 
-</div>
+<body style="-webkit-app-region: drag;display:inline-block;overflow: hidden;white-space: nowrap;">
+    <div class='mainArea' style="-webkit-app-region: drag;display:inline-block;overflow: hidden;white-space: nowrap;">
+        <div class='navigation'>
+            <a href='#' class='close'>Close</a> Queue:
+            <b id='amount'></b>
+            <a href='#' onclick="return false;" class='next'>Next</a> Price:
+            <b id='price'></b> Seller:
+            <b id='seller'></b>
+            <a href='#' onclick="return false;" class='whisper-btn'>Whisper</a>
+        </div>
+        <div class='content'>
+        </div>
+    </div>
 
-<script>
-    require('./renderer.js')
-</script>
+    <script>
+        require('./renderer.js')
+    </script>
 </body>
+
 </html>

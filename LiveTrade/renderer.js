@@ -52,8 +52,19 @@ window.onbeforeunload = function (e) {
 }
 
 function next () {
-  $('.content').html(template.createItemTemplate(window.itemQueue.shift()))
+  var templateObj = template.createItemTemplate(window.itemQueue.shift())
+  $('.content').html(templateObj)
+  $('#seller').html(document.querySelector('div.item').dataset.ign)
+  $('#price').html(document.querySelector('div.item').dataset.price)
+
+  // resize Window to better fit the content
+  resize()
   updateAmount()
+}
+
+// We cannot resize the window from the render, so we send it to the main process
+function resize () {
+  ipcRenderer.send('resize', $('.mainArea').height(), $('.mainArea').width())
 }
 
 function updateAmount () {
@@ -61,6 +72,6 @@ function updateAmount () {
 }
 
 function liveTradeMessage (e) {
-  clipboardy.writeSync(e.currentTarget.dataset.message)
+  clipboardy.writeSync(document.querySelector('div.item').dataset.whisper)
   sendMessage()
 }

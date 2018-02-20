@@ -6,6 +6,7 @@ var Parser = {
     var allItems = []
 
     searchResultsDom.each((index, item) => {
+      $(item).find('.item-affix').html('')
       var propertiesOne = $(item).find('.cell-first .property')
       var propertiesTwo = $(item).find('.cell-second .property')
       let itemJSON = {
@@ -24,7 +25,8 @@ var Parser = {
           league: item.dataset.league,
           tab: item.dataset.tab,
           x: item.dataset.x,
-          y: item.dataset.y
+          y: item.dataset.y,
+          whisper: ''
         },
         properties: {
           Quality: propertiesOne[0].innerText,
@@ -54,7 +56,6 @@ var Parser = {
 
       // Sockets
       $(item).find('.sockets-inner').children().each((key, socket) => {
-        console.log(socket)
         if (socket.classList.contains('socket')) {
           // socket
           if (socket.classList.contains('socketI')) itemJSON.sockets.push('B') // blue
@@ -65,6 +66,12 @@ var Parser = {
         else itemJSON.sockets.push(' ') // No Link
       })
 
+      // Whisper
+      itemJSON.seller.whisper = '@' + itemJSON.seller.ign + ' Hi, I would like to buy your ' + itemJSON.title
+      if (itemJSON.seller.buyout.trim() !== '') itemJSON.seller.whisper += ' listed for ' + itemJSON.seller.buyout
+      itemJSON.seller.whisper += ' in ' + itemJSON.seller.league
+      if (typeof itemJSON.seller.tab !== 'undefined') itemJSON.seller.whisper += ' (stash tab ' + itemJSON.seller.tab + '; position: left ' + itemJSON.seller.x + ', top ' + itemJSON.seller.y + ')'
+
       allItems.push(itemJSON)
     })
     return allItems
@@ -73,7 +80,6 @@ var Parser = {
     var allItems = []
 
     json.result.forEach((itemResult) => {
-      console.log(itemResult)
       let itemJSON = {
         icon: itemResult.item.icon,
         sockets: [],

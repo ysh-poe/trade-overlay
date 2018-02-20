@@ -46,7 +46,7 @@ function createMainWindow () {
 function createLiveTradeWindow () {
   let opts = {
     show: false,
-    frame: true,
+    frame: false,
     parent: mainWindow
   }
 
@@ -63,7 +63,7 @@ function createLiveTradeWindow () {
   win.openDevTools()
 
   win.on('close', () => {
-    config.set('winLiveTradeBounds', mainWindow.getBounds())
+    config.set('winLiveTradeBounds', liveTradeWindow.getBounds())
     if (mainWindow !== null) return false
   })
 
@@ -104,5 +104,16 @@ ipcMain.on('livesearch-item', (e, site, arg) => {
   }
   liveTradeWindow.show()
   liveTradeWindow.webContents.send('livesearch-item', site, arg)
-  console.log('itemFound')
+})
+
+ipcMain.on('resize', (e, height, width) => {
+  try {
+    // this function crashes if a float is given
+    // truncate it into an integer using binary operations
+    liveTradeWindow.setSize((width + 50 | 0), (height + 10 | 0))
+  } catch (error) {
+    console.log(error)
+    console.log('w: ' + width)
+    console.log('h: ' + height)
+  }
 })

@@ -1,11 +1,9 @@
 var pug = require('pug')
-var fn = pug.compileFile('./LiveTrade/templates/item-big.pug')
+var fn = pug.compileFile('./LiveTrade/templates/item-medium.pug')
 
 var template = {
   createItemTemplate: function (item) {
     item.createSocket = this.createSocket
-    console.log('####')
-    console.log(item)
     return fn(item)
   },
   createSocket: function (sockets) {
