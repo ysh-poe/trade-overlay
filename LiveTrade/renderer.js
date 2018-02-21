@@ -4,8 +4,8 @@ var $ = require('jquery')
 var clipboardy = require('clipboardy')
 
 var template = require('./scripts/template.js')
-var Parser = require('./parsers/parser.js')
-var sendMessage = require('../App/webview/scripts/windows.js')
+var Parser = require('./scripts/parser.js')
+var sendMessage = require('../Main/scripts/windows.js')
 
 window.itemQueue = []
 window.hasItem = false

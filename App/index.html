@@ -2,23 +2,25 @@
 <html>
 
 <head>
-<link rel="stylesheet" href="./css/electron-tabs.css" type="text/css" />
-<link rel="stylesheet" href="./css/toggle-arrow.css" type="text/css" />
-<!-- Some Code to make jquery work, jquery doesn't set the $ variable if in an electron context and this makes it work  -->
+<link rel="stylesheet" href="./static/css/electron-tabs.css" type="text/css" />
+<link rel="stylesheet" href="./static/css/toggle-arrow.css" type="text/css" />
+<!-- Some Code to make jquery work, jquery doesn't set the $ variable if it is in an electron context and this makes it work  -->
 	<script>
 		if (typeof module === 'object') {
 			window.module = module;
 			module = undefined;
 		}
 	</script>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    require('jquery')
+  </script>
 	<script>
 		if (window.module) module = window.module;
 	</script>
 
 
-	<title>Ingame Trade Overlay</title>
+  <title>Ingame Trade Overlay</title>
+  <!-- TODO: move to on css files -->
 	<style>
 		html, body {
 			height:100%;
@@ -48,10 +50,15 @@
 			-webkit-app-region: no-drag;
 		}
 		.edit-tab {
-			position: absolute;
-			display: none;
-			background-color: black;
-			color: white;
+      position: absolute;
+      background-color: black;
+      display: none;
+      color: white;
+      top: 30%;
+      left: 30%;
+      padding: 10px;
+      font: 16px/100% arial, sans-serif;
+			-webkit-app-region: no-drag;
 		}
 		.close-button {
 			color: #777;
@@ -64,7 +71,7 @@
 			-webkit-app-region: no-drag;
 		}
 		.close-button:after {
-  			content: '✖'; 
+  			content: '✖';
 		}
 		.add-tab {
 			font: 16px/100% arial, sans-serif;
@@ -102,6 +109,16 @@
 		.title-bar-links {
 			float: left;
 		}
+    .edit-tab input {
+        margin: 2px;
+    }
+
+    .blur {
+      filter: blur(2px)
+    }
+    .titlebar-controls {
+			-webkit-app-region: no-drag;
+    }
     </style>
 </head>
 
@@ -113,9 +130,9 @@
         <div class="etabs-buttons"></div>
     </div>
 	<div class="etabs-views"></div>
-	
+
 	<div id='edit-tab' class='edit-tab'>
-		<form id='edit-tab-form' onsubmit='return false;'> 
+		<form id='edit-tab-form' onsubmit="return false;">
 			Edit Tab:
 			<br/>Title:
 			<input type='text' id='title'>
@@ -123,7 +140,7 @@
 			<input type='text' id='url'>
 			<input type='hidden' id='edit-id' />
 			<input type='submit' id='edit-tab-btn' value='Submit' />
-			<input type='button' onclick="$('#edit-tab').hide()" value='Close' />
+			<input type='button' onclick="$('#edit-tab').hide();document.querySelector('.etabs-views').classList.remove('blur')" value='Close' />
 		</form>
 	</div>
 

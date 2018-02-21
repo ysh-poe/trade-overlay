@@ -1,8 +1,18 @@
 var ElectronTitlebarWindows = require('electron-titlebar-windows')
 
 class TitleBar extends ElectronTitlebarWindows {
+  // have to overwrite this function to remove the fullscreen on dbclick effect
+  init () {
+    // Add click events
+    this.minimizeButton.addEventListener('click', event => this.clickMinimize(event))
+    this.resizeButton.addEventListener('click', event => this.clickResize(event))
+    this.closeButton.addEventListener('click', event => this.clickClose(event))
+  }
+
   constructor (options) {
     super(options)
+
+    this.titlebarElement.removeEventListener('dblclick', event => this.onDoubleclick(event))
     this.linkDiv = document.createElement('div')
     this.linkDiv.className = 'title-bar-links'
 
@@ -17,6 +27,7 @@ class TitleBar extends ElectronTitlebarWindows {
     this.linkDiv.appendChild(arrowDiv)
 
     this.titlebarElement.prepend(this.linkDiv)
+    this.init()
   }
 
   addLink (url, title) {

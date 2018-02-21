@@ -1,9 +1,8 @@
-'use strict'
 const { app, globalShortcut, BrowserWindow, ipcMain } = require('electron')
 
 var path = require('path')
 
-const config = require('./App/webview/scripts/config.js')
+const config = require('./scripts/config.js')
 // Adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')()
 
@@ -21,19 +20,21 @@ function onClosed () {
 function createMainWindow () {
   let opts = {
     show: false,
-    frame: false }
+    frame: false,
+    maximizable: false }
 
   var win = new BrowserWindow(opts)
 
   win.setBounds(config.get('winBounds'))
   win.setAlwaysOnTop(true, 'floating')
   win.setVisibleOnAllWorkspaces(true)
-  // win.setFullScreenable(false)
+  win.setFullScreenable(false)
   win.setMenu(null)
   win.once('ready-to-show', win.show)
 
-  win.loadURL(path.join(__dirname, 'App/webview/index.html'))
-  // win.openDevTools()
+  win.loadURL(path.join(__dirname, '../App/index.html'))
+  if (process.env.NODE_ENV === 'dev') win.openDevTools()
+
   win.on('closed', onClosed)
   win.on('close', () => {
     config.set('winBounds', mainWindow.getBounds())
@@ -53,14 +54,13 @@ function createLiveTradeWindow () {
   var win = new BrowserWindow(opts)
 
   win.setBounds(config.get('winLiveTradeBounds'))
-  // win.setAlwaysOnTop(true, 'floating')
-  // win.setVisibleOnAllWorkspaces(true)
+  win.setAlwaysOnTop(true, 'floating')
+  win.setVisibleOnAllWorkspaces(true)
   win.setFullScreenable(false)
   win.setMenu(null)
-  win.once('ready-to-show', win.show)
 
-  win.loadURL(path.join(__dirname, 'LiveTrade/index.html'))
-  win.openDevTools()
+  win.loadURL(path.join(__dirname, '../LiveTrade/index.html'))
+  if (process.env.NODE_ENV === 'dev') win.openDevTools()
 
   win.on('close', () => {
     config.set('winLiveTradeBounds', liveTradeWindow.getBounds())
@@ -88,7 +88,6 @@ app.on('activate', () => {
 app.on('ready', () => {
   mainWindow = createMainWindow()
   liveTradeWindow = createLiveTradeWindow()
-  liveTradeWindow.show()
   globalShortcut.register('F6', () => {
     if (mainWindow.isVisible()) {
       mainWindow.hide()

@@ -28,7 +28,10 @@
 	width: 94px;
 	position: absolute
 }
-
+.sockets.small {
+  width: 32px;
+  position: absolute
+}
 .link {
 	position: absolute;
 }
@@ -71,4 +74,62 @@
 .link.link4 {
 	left: 28px;
 	top: 111.05477px
+}
+
+.socketSmall.colourR {
+  background: red;
+}
+
+.socketSmall {
+  width: 6px;
+  height: 6px;
+  margin: 5px;
+  float: left;
+}
+
+.socketSmall.colourG {
+  background: green;
+}
+
+.socketSmall.colourW {
+  background: white;
+}
+
+
+.linkSmall.link0 {
+  top: 7px;
+  left: 11px;
+}
+
+.socketSmall.colourB {
+  background: blue;
+}
+
+.linkSmall.link1 {
+  transform: rotate(90deg);
+  left: 19px;
+  top: 15px;
+}
+
+.linkSmall {
+  position: absolute;
+  background: black;
+  height: 2px;
+  width: 10px;
+}
+
+.linkSmall.link2 {
+  top: 23px;
+  left: 11px;
+}
+
+.linkSmall.link3 {
+  transform: rotate(90deg);
+  top: 31px;
+  left: 3px;
+}
+
+.linkSmall.link4 {
+  top: 39px;
+  left: 11px;
 }

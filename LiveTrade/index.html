@@ -7,12 +7,31 @@
         a {
             -webkit-app-region: no-drag;
         }
+        body {
+          -webkit-app-region: drag;
+          display:inline-block;
+          overflow: hidden;
+          white-space: nowrap;
+          background-color: rgb(255, 255, 255)
+        }
+
+        .mainArea {
+          -webkit-app-region: drag;
+          display:inline-block;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        img.icon {
+          height: auto !important;
+        }
+
     </style>
 
 </head>
 
-<body style="-webkit-app-region: drag;display:inline-block;overflow: hidden;white-space: nowrap;">
-    <div class='mainArea' style="-webkit-app-region: drag;display:inline-block;overflow: hidden;white-space: nowrap;">
+<body>
+    <div class='mainArea'>
         <div class='navigation'>
             <a href='#' class='close'>Close</a> Queue:
             <b id='amount'></b>

@@ -1,8 +1,8 @@
 var TabGroup = require('electron-tabs')
 const { shell } = require('electron')
-
-var sendMessage = require('./windows.js')
 var $ = require('jquery')
+
+var sendMessage = require('../../Main/scripts/windows.js')
 
 class TradeTabs extends TabGroup {
   constructor () {
@@ -11,7 +11,7 @@ class TradeTabs extends TabGroup {
         title: 'Poe Trade',
         src: 'http://poe.trade',
         visible: true,
-        webviewAttributes: { preload: '../preload/preload.js' }
+        webviewAttributes: { preload: './scripts/preload.js' }
       }
     })
     this.initial = true
@@ -22,7 +22,7 @@ class TradeTabs extends TabGroup {
       title: title,
       src: url,
       visible: true,
-      webviewAttributes: { preload: '../preload/preload.js' }
+      webviewAttributes: { preload: './scripts/preload.js' }
     })
   }
 
@@ -35,7 +35,7 @@ class TradeTabs extends TabGroup {
           src: tab.src,
           visible: true,
           webviewAttributes: {
-            preload: '../preload/preload.js'
+            preload: './scripts/preload.js'
           },
           ready: () => this.loadTabList(tabList)
         })
@@ -67,7 +67,7 @@ tradeTabs.on('tab-active', (tab, tradeTabs) => {
 
 tradeTabs.on('tab-added', (tab, tradeTabs) => {
   tab.activate()
-  // tab.webview.addEventListener('dom-ready', () => tab.webview.openDevTools())
+  if (process.env.NODE_ENV === 'dev') tab.webview.addEventListener('dom-ready', () => tab.webview.openDevTools())
 
   // Event if whisper button is clicked
   tab.webview.addEventListener('ipc-message', event => {
@@ -118,6 +118,7 @@ function showEditForm (tab, tabID) {
   $('#url').val(tab.webview.src)
   $('#edit-id').val(tabID)
   $('#edit-tab').show()
+  document.querySelector('.etabs-views').classList.add('blur')
 }
 
 $('#edit-tab-form').on('submit', () => {
@@ -125,6 +126,7 @@ $('#edit-tab-form').on('submit', () => {
   var title = $('#title').val()
   var url = $('#url').val()
   $('#edit-tab').hide()
+  document.querySelector('.etabs-views').classList.remove('blur')
   var tab = tradeTabs.getTabByPosition(Number(tabID) + 1)
   tab.setTitle(title)
   if (tab.webview.src !== url) {

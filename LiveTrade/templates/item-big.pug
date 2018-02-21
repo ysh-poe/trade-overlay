@@ -1,9 +1,8 @@
 .item(data-price=(seller.buyout.trim() !== '') ? seller.buyout : 'unpriced', data-ign=seller.ign, data-whisper=seller.whisper)
   table
     tr
-      td.icon
-        .sockets!=createSocket(sockets)
-        img(src=icon, alt=title)
+      td.icon!=createSocket(sockets)
+        img.icon(src=icon, alt=title)
       td.mods
         table
           tr

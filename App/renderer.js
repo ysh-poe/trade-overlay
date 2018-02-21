@@ -2,7 +2,7 @@ var $ = require('jquery')
 var { remote } = require('electron')
 var browserWindow = remote.getCurrentWindow()
 
-const config = require('./scripts/config.js')
+const config = require('../Main/scripts/config.js')
 var tradeTabs = require('./scripts/tradeTabs.js')
 var TitleBar = require('./scripts/titleBar.js')
 // Load tabs from localStorage
@@ -38,7 +38,7 @@ titleBar.on('minimize', () => {
   browserWindow.hide()
 })
 
-titleBar.on('maximize', () => {
+titleBar.on('maximize', (e) => {
   browserWindow.setBounds(titleBar.Bounds)
   browserWindow.setFullScreen(false)
   console.log('max')
