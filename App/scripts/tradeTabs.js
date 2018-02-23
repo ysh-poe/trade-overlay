@@ -29,10 +29,10 @@ class TradeTabs extends TabGroup {
   loadTabList (tabList) {
     var tab = tabList.shift()
     if (tab !== null && tab !== undefined) {
-      if (tab.src !== undefined) {
+      if (tab.url !== undefined) {
         this.addTab({
-          title: tab.title,
-          src: tab.src,
+          title: tab.tabTitle,
+          src: tab.url,
           visible: true,
           webviewAttributes: {
             preload: './scripts/preload.js'
@@ -68,7 +68,6 @@ tradeTabs.on('tab-active', (tab, tradeTabs) => {
 tradeTabs.on('tab-added', (tab, tradeTabs) => {
   tab.activate()
   if (process.env.NODE_ENV === 'dev') tab.webview.addEventListener('dom-ready', () => tab.webview.openDevTools())
-
   // Event if whisper button is clicked
   tab.webview.addEventListener('ipc-message', event => {
     if (event.channel === 'whisper') {
@@ -96,6 +95,8 @@ tradeTabs.on('tab-added', (tab, tradeTabs) => {
     tab.flash(false)
   })
 
+  // right click -> edit tab
+  // middle click -> close tab
   tab.tab.addEventListener('auxclick', (e) => {
     if (e.button === 2) {
       tradeTabs.editTab(e)

@@ -5,26 +5,16 @@ class MyConfig extends Config {
     var tabList = []
     for (var tab of tabGroup.getTabs()) {
       console.log(tab)
-      tabList.push({ src: tab.webview.src, title: tab.getTitle() })
+      tabList.push({ url: tab.webview.src, tabTitle: tab.getTitle() })
     }
-    this.set('tabList', tabList)
+    this.set('tabs', tabList)
   }
 
   loadTabGroup () {
-    return this.get('tabList').reverse()
+    return this.get('tabs').reverse()
   }
 }
 
-const config = new MyConfig({
-  defaults: {
-    collapsed: false,
-    tabList: [{
-      src: 'http://poe.trade',
-      title: 'Poe.trade'
-    }],
-    winBounds: { x: 0, y: 0, height: 600, width: 1000 },
-    winLiveTradeBounds: { x: 0, y: 0, height: 600, width: 1000 }
-  }
-})
+const config = new MyConfig()
 
 module.exports = config

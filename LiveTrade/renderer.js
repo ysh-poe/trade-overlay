@@ -41,6 +41,16 @@ $(document).on('click', 'a.whisper-btn', () => {
   liveTradeMessage($('a.whisper'))
 })
 
+ipcRenderer.on('send-message', () => {
+  liveTradeMessage($('a.whisper'))
+})
+
+ipcRenderer.on('next-item', next)
+
+ipcRenderer.on('hide-live-search', () => {
+  currentWindow.hide()
+})
+
 // If window gets closed, instead just hide it
 window.onbeforeunload = function (e) {
   var parent = currentWindow.getParentWindow()

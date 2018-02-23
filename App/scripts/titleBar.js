@@ -12,7 +12,6 @@ class TitleBar extends ElectronTitlebarWindows {
   constructor (options) {
     super(options)
 
-    this.titlebarElement.removeEventListener('dblclick', event => this.onDoubleclick(event))
     this.linkDiv = document.createElement('div')
     this.linkDiv.className = 'title-bar-links'
 
@@ -26,8 +25,14 @@ class TitleBar extends ElectronTitlebarWindows {
     arrowDiv.appendChild(arrow)
     this.linkDiv.appendChild(arrowDiv)
 
+    var cogWheel = document.createElement('i')
+    cogWheel.classList.add('material-icons')
+    cogWheel.classList.add('md-light')
+    cogWheel.innerText = 'settings'
+    cogWheel.style.color = this.options.color
+    this.titlebarElement.querySelector('.titlebar-controls').prepend(cogWheel)
+
     this.titlebarElement.prepend(this.linkDiv)
-    this.init()
   }
 
   addLink (url, title) {

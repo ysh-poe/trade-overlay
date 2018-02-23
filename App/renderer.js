@@ -5,7 +5,8 @@ var browserWindow = remote.getCurrentWindow()
 const config = require('../Main/scripts/config.js')
 var tradeTabs = require('./scripts/tradeTabs.js')
 var TitleBar = require('./scripts/titleBar.js')
-// Load tabs from localStorage
+var openSettings = require('../Settings/index.js')
+
 var tabList = config.loadTabGroup()
 
 const titleBar = new TitleBar({
@@ -71,6 +72,11 @@ if (config.get('collapsed') === true) {
   $('.title-bar-arrow').attr('class', 'title-bar-arrow down')
   $('.etabs-tabgroup').slideDown()
 }
+
+// cogWheel got clicked
+$(document).on('click', '.titlebar-controls .material-icons', (e) => {
+  openSettings()
+})
 
 console.log(tradeTabs)
 
