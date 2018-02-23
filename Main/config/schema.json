@@ -1,0 +1,82 @@
+{
+  "title": "Settings",
+  "type": "object",
+  "properties": {
+    "hotkeys": {
+      "title": "Hotkeys",
+      "type": "object",
+      "properties": {
+        "showApp": {
+          "title": "Show/Hide main window",
+          "type": "string",
+          "default": "F6"
+        },
+        "sendMessage": {
+          "title": "Send Message",
+          "type": "string",
+          "default": "F7"
+        },
+        "nextItem": {
+          "title": "Next item",
+          "type": "string",
+          "default": "F8"
+        },
+        "hideLiveSearch": {
+          "title": "Hides live search window",
+          "type": "string",
+          "default": "F9"
+        }
+      }
+    },
+    "liveSearch": {
+      "title": "Livesearch",
+      "type": "object",
+      "properties": {
+        "smallSockets": {
+          "title": "Small Sockets?",
+          "type": "boolean",
+          "format": "checkbox",
+          "description": "If this is checked it will hide the item art and show a minified version of the sockets. It looks similar to when the item is dropped on the ground ingame."
+        },
+        "template": {
+          "title": "Template",
+          "type": "string",
+          "enum": [
+            "item-big",
+            "item-medium",
+            "item-small"
+          ]
+        },
+        "corner": {
+          "title": "Corner",
+          "type": "string",
+          "enum": [
+            "top-left",
+            "top-right",
+            "bottom-left",
+            "bottom-right"
+          ]
+        }
+      }
+    },
+    "tabs": {
+      "type": "array",
+      "format": "table",
+      "title": "Tabs",
+      "items": {
+        "type": "object",
+        "title": "Tab",
+        "properties": {
+          "tabTitle": {
+            "type": "string",
+            "title": "Title"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          }
+        }
+      }
+    }
+  }
+}
