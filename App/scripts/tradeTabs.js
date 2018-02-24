@@ -43,18 +43,8 @@ class TradeTabs extends TabGroup {
     }
   }
 
-  editTab (tabEvent) {
-    // select all tabs
-    var tabs = tabEvent.currentTarget.parentElement.children
-
-    // iterate over every tab to find the tab that is rightclicked
-    for (var tempTab in tabs) {
-      if (tabs[tempTab] === tabEvent.currentTarget) {
-        var tab_ = tradeTabs.getTabByPosition(Number(tempTab) + 1)
-        showEditForm(tab_, tempTab)
-        break
-      }
-    }
+  editTab (tabEvent, tab) {
+    showEditForm(tab)
   }
 }
 
@@ -71,7 +61,6 @@ tradeTabs.on('tab-added', (tab, tradeTabs) => {
   // Event if whisper button is clicked
   tab.webview.addEventListener('ipc-message', event => {
     if (event.channel === 'whisper') {
-      console.log('event.sendmessage')
       // For some reason it only sends the message on the second attempt,
       // so we just try to send the message twice on a new tab
       if (tradeTabs.initial) {
@@ -80,7 +69,6 @@ tradeTabs.on('tab-added', (tab, tradeTabs) => {
       }
       setTimeout(sendMessage, 10)
     } else if (event.channel === 'notify') {
-      console.log(tab)
       if (tab.getBadge() === false || tab.getBadge() === null || tab.getBadge() === undefined) {
         tab.setBadge(1)
       } else {
@@ -99,7 +87,8 @@ tradeTabs.on('tab-added', (tab, tradeTabs) => {
   // middle click -> close tab
   tab.tab.addEventListener('auxclick', (e) => {
     if (e.button === 2) {
-      tradeTabs.editTab(e)
+      console.log(tab)
+      tradeTabs.editTab(e, tab)
     } else if (e.button === 1) {
       tab.close()
     }
@@ -114,10 +103,10 @@ tradeTabs.on('tab-added', (tab, tradeTabs) => {
   })
 })
 
-function showEditForm (tab, tabID) {
+function showEditForm (tab) {
   $('#title').val(tab.getTitle())
   $('#url').val(tab.webview.src)
-  $('#edit-id').val(tabID)
+  $('#edit-id').val(tab.id)
   $('#edit-tab').show()
   document.querySelector('.etabs-views').classList.add('blur')
 }
@@ -133,6 +122,11 @@ $('#edit-tab-form').on('submit', () => {
   if (tab.webview.src !== url) {
     tab.webview.src = url
   }
+})
+
+$('.close-btn').on('click', () => {
+  $('#edit-tab').hide()
+  document.querySelector('.etabs-views').classList.remove('blur')
 })
 
 module.exports = tradeTabs

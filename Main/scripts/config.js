@@ -11,7 +11,7 @@ class MyConfig extends Config {
   }
 
   loadTabGroup () {
-    return this.get('tabs').reverse()
+    return this.get('tabs')
   }
 }
 

@@ -34,7 +34,6 @@ $('.next').on('click', next)
 
 $(document).on('click', 'a.whisper', (e) => {
   liveTradeMessage(e)
-  next()
 })
 
 $(document).on('click', 'a.whisper-btn', () => {
@@ -62,11 +61,12 @@ window.onbeforeunload = function (e) {
 }
 
 function next () {
-  var templateObj = template.createItemTemplate(window.itemQueue.shift())
-  $('.content').html(templateObj)
-  $('#seller').html(document.querySelector('div.item').dataset.ign)
-  $('#price').html(document.querySelector('div.item').dataset.price)
-
+  if (window.itemQueue.length > 0) {
+    var templateObj = template.createItemTemplate(window.itemQueue.shift())
+    $('.content').html(templateObj)
+    $('#seller').html(document.querySelector('div.item').dataset.ign)
+    $('#price').html(document.querySelector('div.item').dataset.price)
+  }
   // resize Window to better fit the content
   resize()
   updateAmount()
@@ -74,7 +74,7 @@ function next () {
 
 // We cannot resize the window from the render, so we send it to the main process
 function resize () {
-  ipcRenderer.send('resize', $('.mainArea').height(), $('.mainArea').width())
+  ipcRenderer.send('resize', $('.mainArea')[0].clientHeight, $('.mainArea')[0].clientWidth)
 }
 
 function updateAmount () {
@@ -83,5 +83,6 @@ function updateAmount () {
 
 function liveTradeMessage (e) {
   clipboardy.writeSync(document.querySelector('div.item').dataset.whisper)
+  next()
   sendMessage()
 }

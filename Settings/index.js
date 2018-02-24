@@ -1,40 +1,40 @@
-const { remote } = require('electron')
-const BrowserWindow = remote.BrowserWindow
+const { BrowserWindow } = require('electron')
 
 var path = require('path')
 
-let settingWindow = null
+let settingWindow = {
+  win: null,
+  initWindow: function (parentWindow) {
+    let opts = {
+      show: true,
+      frame: false,
+      parent: parentWindow
+    }
 
-function openSettings () {
-  if (settingWindow == null) {
-    settingWindow = createSettingWindow()
-  } else {
-    settingWindow.show()
+    this.win = new BrowserWindow(opts)
+
+    this.win.setAlwaysOnTop(true, 'floating')
+    this.win.setVisibleOnAllWorkspaces(true)
+    this.win.setFullScreenable(false)
+    this.win.setMenu(null)
+    this.win.loadURL(path.join(__dirname, 'index.html'))
+
+    if (process.env.NODE_ENV === 'dev') this.win.openDevTools()
+
+    this.registerEvents()
+  },
+  openSettings: function () {
+    if (this.win === null) {
+      this.initWindow()
+    } else {
+      this.win.show()
+    }
+  },
+  registerEvents: function () {
+    this.win.on('close', () => {
+      this.win = null
+    })
   }
 }
 
-function createSettingWindow () {
-  let opts = {
-    show: true,
-    frame: false,
-    parent: remote.getCurrentWindow()
-  }
-
-  var win = new BrowserWindow(opts)
-
-  win.setAlwaysOnTop(true, 'floating')
-  win.setVisibleOnAllWorkspaces(true)
-  win.setFullScreenable(false)
-  win.setMenu(null)
-  win.loadURL(path.join(__dirname, 'index.html'))
-
-  if (process.env.NODE_ENV === 'dev') win.openDevTools()
-
-  win.on('close', () => {
-    settingWindow = null
-  })
-
-  return win
-}
-
-module.exports = openSettings
+module.exports = settingWindow

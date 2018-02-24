@@ -46,7 +46,8 @@ var editor = new JSONEditor($('.editor')[0], {
   required_by_default: true,
   startval: {
     hotkeys: config.get('hotkeys'),
-    liveSearch: config.get('liveSearch')
+    liveSearch: config.get('liveSearch'),
+    corner: config.get('liveSearch.corner')
     // tabs: config.get('tabs')
   }
 })

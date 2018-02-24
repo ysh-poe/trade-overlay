@@ -18,12 +18,6 @@
 	height: 47px;
 	float: left;
 }
-
-.socketRight {
-	float: right;
-}
-
-
 .sockets {
 	width: 94px;
 	position: absolute
@@ -133,3 +127,7 @@
   top: 39px;
   left: 11px;
 }
+.socketRight {
+  float: right;
+}
+

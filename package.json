@@ -13,7 +13,7 @@
   "scripts": {
     "test": "standard",
     "start": "npm test && electron ./Main/main.js",
-    "dev": "cross-env NODE_ENV=dev npm run start",
+    "dev": "cross-env NODE_ENV=dev npm start",
     "build": "electron-packager . --out=dist --asar --overwrite --platform win32"
   },
   "dependencies": {

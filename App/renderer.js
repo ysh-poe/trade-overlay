@@ -1,11 +1,10 @@
 var $ = require('jquery')
-var { remote } = require('electron')
+var { remote, ipcRenderer } = require('electron')
 var browserWindow = remote.getCurrentWindow()
 
 const config = require('../Main/scripts/config.js')
 var tradeTabs = require('./scripts/tradeTabs.js')
 var TitleBar = require('./scripts/titleBar.js')
-var openSettings = require('../Settings/index.js')
 
 var tabList = config.loadTabGroup()
 
@@ -75,10 +74,8 @@ if (config.get('collapsed') === true) {
 
 // cogWheel got clicked
 $(document).on('click', '.titlebar-controls .material-icons', (e) => {
-  openSettings()
+  ipcRenderer.send('open-settings')
 })
-
-console.log(tradeTabs)
 
 // Store the tabs on close
 window.onbeforeunload = () => config.storeTabGroup(tradeTabs)
