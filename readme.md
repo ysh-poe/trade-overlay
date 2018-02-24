@@ -3,8 +3,9 @@
 The goal of this application is to simplify trading in the game Path of Exile. 
 ## Installing for development
 Requirements:
-* [Node.js 8.9.4](https://nodejs.org/en/)
+* [Node.js 8.9.4](https://nodejs.org/en/) I wasn't able to build the used ```ffi``` package using Node 9+.
 * [Node-gyp](https://github.com/nodejs/node-gyp#installation)
+
 
 Clone this github repository
 ```
