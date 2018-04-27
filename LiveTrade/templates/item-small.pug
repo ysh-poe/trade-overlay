@@ -6,5 +6,8 @@
       td
         table
           tr
-            td #{title}
+            td
+              if corrupted
+                b.corrupted
+              | #{title}
 

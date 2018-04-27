@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
         old.apply(this, arguments)
         ipcRenderer.sendToHost('notify')
       }
-    } else if (window.location.href.search('pathofexile.com/trade')) {
+    } else if (window.location.href.search('pathofexile.com/trade') > -1) {
       // on pathofexile/trade the $ object does not exists on DOMContentLoaded
       // so we just wait until it does
       var interval = setInterval(function () {

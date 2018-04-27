@@ -76,6 +76,13 @@ if (config.get('collapsed') === true) {
 $(document).on('click', '.titlebar-controls .material-icons', (e) => {
   ipcRenderer.send('open-settings')
 })
-
+console.log(this.win.webContents)
+browserWindow.webContents.on('will-navigate', (e) => {
+  console.log('test')
+  e.preventDefault()
+})
+browserWindow.webContents.on('did-navigate', (e) => {
+  console.log(e)
+})
 // Store the tabs on close
 window.onbeforeunload = () => config.storeTabGroup(tradeTabs)

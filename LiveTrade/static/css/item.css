@@ -1,0 +1,52 @@
+a {
+  -webkit-app-region: no-drag;
+}
+
+body {
+  -webkit-app-region: drag;
+  display: inline-block;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  font-size: 90%;
+  background: black;
+  color: rgba(255, 255, 255, 0.6);
+
+}
+
+.mainArea {
+  -webkit-app-region: drag;
+  display: inline-block;
+  overflow: hidden;
+}
+
+td.mods {
+  max-width: 440px;
+  border-bottom: grey;
+  color: #8888FF;
+}
+
+.implicit {
+  border-bottom: solid 1px;
+  color: #8888FF;
+}
+
+.enchant {
+  color: #b4b4ff;
+  border-bottom: solid 1px;
+}
+
+.crafted {
+  border-top: solid 1px;
+}
+
+b.corrupted {
+  font-weight: normal;
+  color: rgb(255, 0, 0)
+}
+b.corrupted:before {
+  content: "Corrupted "
+}
+
+ul {
+  list-style-type: none;
+}

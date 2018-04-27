@@ -35,10 +35,10 @@ var mainWindow = {
     this.unregisterHotkey()
     this.hotkey = config.get('hotkeys.showApp')
     globalShortcut.register(config.get('hotkeys.showApp'), () => {
-      if (mainWindow.isVisible()) {
-        mainWindow.hide()
+      if (this.win.isVisible()) {
+        this.win.hide()
       } else {
-        mainWindow.show()
+        this.win.show()
       }
     })
   },

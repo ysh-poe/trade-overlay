@@ -117,7 +117,7 @@ $('#edit-tab-form').on('submit', () => {
   var url = $('#url').val()
   $('#edit-tab').hide()
   document.querySelector('.etabs-views').classList.remove('blur')
-  var tab = tradeTabs.getTabByPosition(Number(tabID) + 1)
+  var tab = tradeTabs.getTab(Number(tabID))
   tab.setTitle(title)
   if (tab.webview.src !== url) {
     tab.webview.src = url

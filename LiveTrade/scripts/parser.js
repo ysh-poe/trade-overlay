@@ -13,8 +13,10 @@ var Parser = {
         icon: $(item).find('.icon img')[0].src,
         sockets: [],
         title: $(item).find('a.title')[0].text.trim(),
+        corrupted: false,
         mods: {
           implicit: '',
+          enchant: '',
           explicits: [],
           crafted: []
         },
@@ -45,11 +47,14 @@ var Parser = {
       }
 
       // Mods
+      if (itemJSON.title.search('corrupted') > -1) itemJSON.corrupted = true
+      itemJSON.title = itemJSON.title.replace('corrupted', '')
       if ($(item).find('.mods .sortable').length > 0) {
         var itemMods = $(item).find('.mods .sortable')
         itemMods.each((index, itemMod) => {
           if (itemMod.parentElement.classList.contains('withline')) itemJSON.mods.implicit = itemMod.innerText // implicit
-          else if (itemMod.children[0].tagName === 'SPAN') itemJSON.mods.crafted.push(itemMod.innerText) // crafted
+          else if ($(itemMod).find('span.label-enchant').length === 1) itemJSON.mods.enchant = $(itemMod).find('span.label-enchant').parent().text().replace('enchanted ', '')
+          else if ($(itemMod).find('span.label-crafted').length === 1) itemJSON.mods.crafted.push($(itemMod).find('span.label-crafted').parent().text().replace('crafted ', ''))
           else itemJSON.mods.explicits.push(itemMod.innerText)
         })
       }
@@ -84,8 +89,10 @@ var Parser = {
         icon: itemResult.item.icon,
         sockets: [],
         title: itemResult.item.name + ' ' + itemResult.item.typeLine,
+        corrupted: false,
         mods: {
           implicit: (typeof itemResult.item.implicitMods !== 'undefined') ? itemResult.item.implicitMods[0] : '',
+          enchant: (typeof itemResult.item.enchantMods !== 'undefined') ? itemResult.item.enchantMods[0] : '',
           explicits: (typeof itemResult.item.explicitMods !== 'undefined') ? itemResult.item.explicitMods : [],
           crafted: (typeof itemResult.item.craftedMods !== 'undefined') ? itemResult.item.craftedMods : []
         },
@@ -102,6 +109,10 @@ var Parser = {
         properties: {}
       }
 
+      if (typeof itemResult.item.corrupted === 'undefined') itemJSON.corrupted = false
+      else if (itemResult.item.corrupted === true) itemJSON.corrupted = true
+
+      // Properties
       if (typeof itemResult.item.properties !== 'undefined') {
         for (const property of itemResult.item.properties) {
           if (typeof property.values[0] !== 'undefined') {

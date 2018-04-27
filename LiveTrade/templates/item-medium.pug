@@ -7,11 +7,15 @@
         table
           tr
             td
+              if corrupted
+                b.corrupted
               | #{title}
               ul
                 if mods.implicit.trim() != ''
                   li.implicit #{mods.implicit}
+                if mods.enchant.trim() != ''
+                  li.enchant #{mods.enchant}
                 each explicit in mods.explicits
-                  li.explixit #{explicit}
+                  li.explicit #{explicit}
                 each craft in mods.crafted
                   li.crafted #{craft}

@@ -17,7 +17,6 @@ var window = {
     }
 
     this.win = new BrowserWindow(opts)
-
     this.win.setBounds(config.get('winLiveTradeBounds'))
     this.win.setAlwaysOnTop(true, 'floating')
     this.win.setVisibleOnAllWorkspaces(true)
@@ -55,6 +54,7 @@ var window = {
     this.win.on('hide', () => this.unregisterHotkeys(false))
     this.win.on('close', () => {
       config.set('winLiveTradeBounds', this.win.getBounds())
+      console.log(this.win.getParentWindow())
       if (this.win.getParentWindow() !== null) return false
     })
   }

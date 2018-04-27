@@ -23,9 +23,9 @@ let settingWindow = {
 
     this.registerEvents()
   },
-  openSettings: function () {
+  openSettings: function (parentWindow) {
     if (this.win === null) {
-      this.initWindow()
+      this.initWindow(parentWindow)
     } else {
       this.win.show()
     }

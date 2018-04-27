@@ -36,7 +36,9 @@ app.on('activate', () => {
 app.on('ready', () => {
   mainWindow.initWindow()
   mainWindow.registerHotkey()
-  liveTradeWindow.initWindow()
+  liveTradeWindow.initWindow(mainWindow.win)
+
+  mainWindow.win.on('will-navigate', () => console.log('ASDASDAS'))
 
   mainWindow.win.on('close', () => {
     if (settingWindow.win) settingWindow.win.close()
@@ -45,7 +47,7 @@ app.on('ready', () => {
   mainWindow.win.on('closed', onClosed)
   // No Ads in Dev Mode
   // only works for poe.trade right now
-  if (process.env.NODE_ENV === 'dev') {
+  if (process.env.NODE_ENV === 'dev' || process.env.adBlock === 'true') {
     const filter = {
       urls: ['*://*.cloudfront.net/*.gz.js']
     }
@@ -69,7 +71,7 @@ ipcMain.on('livesearch-item', (e, site, arg) => {
 })
 
 ipcMain.on('open-settings', () => {
-  settingWindow.openSettings()
+  settingWindow.openSettings(mainWindow.win)
 })
 
 ipcMain.on('resize', (e, height, width) => {
