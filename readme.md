@@ -26,7 +26,7 @@ yarn install
 This application uses Native Node Modules and those have to be built them against [the electron headers](https://github.com/electron/electron/blob/f403950503eb82bcfa230b13a909572beff75fc0/docs/tutorial/using-native-node-modules.md#using-native-node-modules). On windows this can easily be done via:
 
 ```
-.\node_modules\.bin\electron-rebuild.cmd
+yarn rebuild
 ```
 
 The application can now be started using `yarn run dev`
