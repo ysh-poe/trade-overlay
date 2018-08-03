@@ -1,21 +1,22 @@
 const pug = require('pug');
 const config = require('../../../scripts/config.js');
+const path = require('path');
 let fn;
 
 const template = {
   createItemTemplate: function(item) {
     switch (config.get('liveSearch.template')) {
       case 'item-medium':
-        fn = pug.compileFile('./App/windows/LiveTrade/templates/item-medium.pug');
+        fn = pug.compileFile(path.join(__dirname, '../templates/item-medium.pug'));
         break;
       case 'item-small':
-        fn = pug.compileFile('./App/windows/LiveTrade/templates/item-small.pug');
+        fn = pug.compileFile(path.join(__dirname, '../templates/item-small.pug'));
         break;
       case 'item-big':
-        fn = pug.compileFile('./App/windows/LiveTrade/templates/item-big.pug');
+        fn = pug.compileFile(path.join(__dirname, '../templates/item-big.pug'));
         break;
       default:
-        fn = pug.compileFile('./App/windows/LiveTrade/templates/item-medium.pug');
+        fn = pug.compileFile(path.join(__dirname, '../templates/item-medium.pug'));
         break;
     }
     if (config.get('liveSearch.smallSockets') === true) item.createSocket = template.createSocketSmall;

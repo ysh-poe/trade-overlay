@@ -7,7 +7,7 @@ const browserWindow = remote.getCurrentWindow();
 const titleBar = new TitleBar({
   darkMode: false,
   color: 'rgb(220, 200, 200)',
-  backgroundColor: 'rgb(32, 35, 64)',
+  backgroundColor: 'rgb(5, 12, 27)',
   draggable: true,
   fullscreen: false
 });
