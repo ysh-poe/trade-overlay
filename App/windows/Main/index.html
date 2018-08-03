@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/electron-tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../static/css/toggle-arrow.css" type="text/css" />
+  <link rel="stylesheet" href="../static/css/default.css" />
+  <!-- Some Code to make jquery work, jquery doesn't set the $ variable if it is in an electron context and this makes it work  -->
+  <script>
+    if (typeof module === 'object') {
+      window.module = module;
+      module = undefined;
+    }
+  </script>
+  <script>
+    require('jquery')
+  </script>
+  <script>
+    if (window.module) module = window.module;
+  </script>
+
+
+  <title>Ingame Trade Overlay</title>
+</head>
+
+<body style="overflow:hidden;">
+  <div class="title-bar">
+  </div>
+  <div class="etabs-tabgroup" style="-webkit-app-region: drag">
+    <div class="etabs-tabs"></div>
+    <div class="etabs-buttons"></div>
+  </div>
+  <div class="etabs-views"></div>
+
+  <div id='edit-tab' class='edit-tab'>
+    <form id='edit-tab-form' onsubmit="return false;">
+      Edit Tab:
+      <br/>Title:
+      <input type='text' id='title'>
+      <br/> Url:
+      <input type='text' id='url'>
+      <input type='hidden' id='edit-id' />
+      <input type='submit' id='edit-tab-btn' value='Submit' />
+      <input type='button' id='close-btn' value='Close' />
+    </form>
+  </div>
+
+  <script>
+    require('./renderer.js')
+		// require('./scripts/draggable.js')
+  </script>
+</body>
+
+</html>

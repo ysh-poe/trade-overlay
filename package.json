@@ -1,52 +1,52 @@
 {
   "name": "trade-overlay",
   "productName": "Trade Overlay",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "An ingame trade overlay for Path of Exile",
   "license": "MIT",
   "repository": "ysh-poe/trade-overlay",
   "author": {
     "name": "ysh-poe",
-    "url": ""
+    "url": "https://github.com/ysh-poe/trade-overlay"
   },
-  "main": "./Main/main.js",
+  "main": "./App/index.js",
+  "build": {
+    "appId": "trade-overlay",
+    "icon": "./App/Icon256.png"
+  },
   "scripts": {
-    "test": "standard",
-    "start": "npm test && electron ./Main/main.js",
-    "dev": "cross-env NODE_ENV=dev npm start",
-    "build": "electron-packager . --out=dist --asar --overwrite --platform win32"
+    "test": "eslint ./App/**/*.js",
+    "start": "yarn test && electron ./App/index.js",
+    "dev": "cross-env NODE_ENV=dev yarn start",
+    "rebuild": "electron-rebuild",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "clipboardy": "^1.2.2",
     "electron-config": "^1.0.0",
     "electron-debug": "^1.0.0",
     "electron-tabs": "^0.9.0",
     "electron-titlebar-windows": "^3.0.0",
-    "eslint-plugin-react": "^7.7.0",
-    "jquery": "^3.2.1",
-    "jquery.js": "0.0.2-security",
-    "json-editor": "^0.7.28",
+    "jquery": "^3.3.1",
     "pug": "^2.0.0-rc.4",
     "robotjs": "^0.4.7",
-    "show-poe-window": "https://github.com/ysh-poe/show-poe-window.git",
-    "win32-api": "^1.11.0"
+    "show-poe-window": "https://github.com/ysh-poe/show-poe-window.git"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
     "cross-env": "^5.1.3",
-    "devtron": "^1.1.0",
     "electron": "^1.8.2",
+    "electron-builder": "^20.26.1",
     "electron-packager": "^11.0.1",
     "electron-rebuild": "^1.7.3",
     "electron-winstaller": "^2.6.4",
     "eslint": "^4.18.0",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-config-standard-jsx": "^5.0.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "standard": "^11.0.0",
-    "xo": "^0.20.3"
+    "prettier": "^1.13.7",
+    "eslint-plugin-react": "^7.7.0"
   }
 }

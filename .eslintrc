@@ -1,0 +1,22 @@
+{
+	"env": {
+		"node": true,
+		"es6": true,
+		"browser": true
+	},
+	"rules": {
+		"no-console": 0,
+		"no-cond-assign": 0,
+		"no-unused-vars": 1,
+		"no-extra-semi": "warn",
+		"semi": "warn",
+		"no-var": 2,
+		"eqeqeq": "error"
+	},
+	"extends": "eslint:recommended",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true
+		}
+	}
+}

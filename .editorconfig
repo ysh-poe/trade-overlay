@@ -30,4 +30,4 @@ indent_size = 2
 
 [{package.json,*.yml,*.cjson}]
 indent_style = space
-indent_size =
+indent_size = 2

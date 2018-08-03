@@ -1,0 +1,63 @@
+a {
+  -webkit-app-region: no-drag;
+}
+
+body {
+  -webkit-app-region: drag;
+  display: inline-block;
+  overflow: hidden;
+  background-color: rgba(10, 10, 10, 0.9);
+  font-size: 90%;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.mainArea {
+  -webkit-app-region: drag;
+  display: inline-block;
+  overflow: hidden;
+}
+
+td.mods {
+  max-width: 440px;
+  border-bottom: grey;
+  color: #8888ff;
+}
+
+.implicit {
+  border-bottom: solid 1px;
+  color: #8888ff;
+}
+
+.enchant {
+  color: #b4b4ff;
+  border-bottom: solid 1px;
+}
+
+.crafted {
+  border-top: solid 1px;
+}
+
+b.corrupted {
+  font-weight: normal;
+  color: rgb(255, 0, 0);
+}
+b.corrupted:before {
+  content: 'Corrupted ';
+}
+
+table {
+  /*min-width: 490px;*/
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li.property {
+  min-width: 60;
+  max-width: 100;
+}
+
+td.icon {
+  min-width: 94px;
+}
