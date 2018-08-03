@@ -10,6 +10,7 @@ Requirements:
 
 - [Node.js](https://nodejs.org/en/)
 - [Node-gyp](https://github.com/nodejs/node-gyp#installation)
+- [Yarn](https://yarnpkg.com/)
 
 Clone this github repository
 
